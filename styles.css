@@ -1,0 +1,406 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  font-family: "Euclid Circular A", Poppins;
+  color: #f9f9f9;
+  background-image: url("me.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0% 0%;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.burger,
+.menu {
+  position: fixed;
+}
+
+.burger {
+  z-index: 4;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  background-image: url("menu.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body.open .burger {
+  background-image: url("close.svg");
+}
+
+.background {
+  position: fixed;
+  z-index: 2;
+  top: 44px;
+  left: 44px;
+  aspect-ratio: 1 / 1;
+  translate: -50% -50%;
+  height: 88px;
+  background: #07030a;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.6s;
+}
+
+body.open .background {
+  height: 300vh;
+  opacity: 0.5;
+}
+
+.menu {
+  z-index: 3;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.05s;
+}
+
+.menu nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 100px;
+}
+
+body.open .menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body .menu nav:hover > a {
+  opacity: 0.25;
+}
+
+body .menu nav > a:hover {
+  opacity: 1;
+  translate: 8px 0;
+}
+
+.menu a {
+  position: relative;
+  color: #f9f9f9;
+  font-size: 17px;
+  font-family: "Euclid Circular A";
+  padding: 5px 0 5px 5px;
+  text-decoration: none;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  translate: 0 -50%;
+  margin-top: 2px;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+  opacity: 0;
+  rotate: 45deg;
+  transition: 0.3s;
+}
+
+.menu a:hover::after {
+  opacity: 1;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    translate: -30px 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body.open .menu a {
+  opacity: 1;
+  animation: appear 0.35s backwards;
+}
+.main{
+  
+  width: 90vw;
+  height: 90vh;
+  /* position: absolute;
+  left: 0px;
+  top: 72px; */
+}
+button {
+  padding: 5.5rem -1.5rem 0.5rem 2.5rem;
+  box-shadow: 0px 0px 0px 3px black;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #efbde4;
+  color: black;
+  font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+  transition: all .9s ease-in-out;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: #e145b5;
+  color: white;
+}
+
+button::before {
+  content: "🤍";
+  position: absolute;
+  left: -0rem;
+  top: 0rem;
+  opacity: 1;
+  font-size: 1.55rem;
+  transition: all .9s ease-in-out;
+  transform: rotate(0deg);
+}
+
+button:hover::before {
+  content: "💗";
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(20deg);
+  font-size: 2.5rem;
+  top: -0.75rem;
+  transition: all .9s ease-in-out;
+  animation: rightRun 2s forwards;
+}
+
+button:active::before {
+  content: "💗";
+}
+
+@keyframes rightRun {
+  100% {
+    transform: translateX(140px);
+  }
+}
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 25px 20px 22px;
+  box-shadow: rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background-color: #e8e8e8;
+  border-color: #ffe2e2;
+  border-style: solid;
+  border-width: 9px;
+  border-radius: 35px;
+  font-size: 25px;
+  font-weight: 900;
+  color: rgb(134, 124, 124);
+  font-family: monospace;
+  transition: transform 400ms cubic-bezier(.68,-0.55,.27,2.5), 
+  border-color 400ms ease-in-out,
+  background-color 400ms ease-in-out;
+  word-spacing: -2px;
+}
+
+@keyframes movingBorders {
+  0% {
+    border-color: #fce4e4;
+  }
+
+  50% {
+    border-color: #dd76a4;
+  }
+
+  90% {
+    border-color: #fce4e4;
+  }
+}
+
+button:hover {
+  background-color: #eee;
+  transform: scale(105%);
+  animation: movingBorders 3s infinite;
+}
+
+button svg {
+  margin-right: 11px;
+  fill: rgb(255, 110, 110);
+  transition: opacity 100ms ease-in-out;
+}
+
+.filled {
+  position: absolute;
+  opacity: 0;
+  top: 20px;
+  left: 22px;
+}
+
+@keyframes beatingHeart {
+  0% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.15);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.15);
+  }
+
+  60% {
+    transform: scale(1);
+  }
+}
+/* 
+button1:hover .empty {
+  opacity: 0;
+}
+
+button1:hover .filled {
+  opacity: 1;
+  animation: beatingHeart 1.2s infinite;
+} */
+.bubble {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 0%;
+  box-shadow: inset 0 0 25px rgba (255, 255, 255, 0.25);
+  animation: animate_4010 1s ease-in-out infinite;
+}
+
+.bubble:nth-child(2) {
+  position: absolute;
+  zoom: 0.2;
+  left: -10px;
+  top: 800px;
+  animation-delay: -2s;
+}
+
+.bubble:nth-child(3) {
+  position: absolute;
+  zoom: 0.25;
+  right: -80px;
+  top: -600px;
+  animation-delay: -6s;
+}
+
+.bubble:nth-child(4) {
+  position: absolute;
+  zoom: 0.3;
+  left: 600px;
+  bottom: -200px;
+  animation-delay: -3s;
+}
+
+.bubble:nth-child(5) {
+  position: absolute;
+  zoom: 0.2;
+  left: 100px;
+  top: 80px;
+  animation-delay: -5s;
+}
+
+@keyframes animate_4010 {
+  0%,100% {
+    transform: translateY(-20px);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+.bubble::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 45px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 10;
+  filter: blur(2px);
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  z-index: 10;
+  filter: blur(2px);
+}
+
+.bubble span {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bubble span:nth-child(1) {
+  inset: 10px;
+  border-left: 15px solid #0fb4ff;
+  filter: blur(8px);
+}
+
+.bubble span:nth-child(2) {
+  inset: 10px;
+  border-right: 15px solid #ff4484;
+  filter: blur(8px);
+}
+
+.bubble span:nth-child(3) {
+  inset: 10px;
+  border-top: 15px solid #ffeb3b;
+  filter: blur(8px);
+}
+
+.bubble span:nth-child(4) {
+  inset: 30px;
+  border-left: 15px solid #ff4484;
+  filter: blur(12px);
+}
+
+.bubble span:nth-child(5) {
+  inset: 10px;
+  border-bottom: 10px solid #fff;
+  filter: blur(8px);
+  transform: rotate(330deg);
+}
